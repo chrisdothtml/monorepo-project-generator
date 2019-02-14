@@ -1,5 +1,7 @@
 # monorepo-project-generator
 
+> Generate packages to stress test various monorepo approaches with
+
 ## Use
 
 ### 1. Clone this repo and install its deps
