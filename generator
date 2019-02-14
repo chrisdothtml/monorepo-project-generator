@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+
+// replaces Math.random with seeded rng for reproducable package generation
+require('seedrandom')('monorepo', { global: true })
+require('./index.js')(process.argv.slice(2)).catch(console.error)
