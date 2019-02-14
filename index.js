@@ -5,7 +5,7 @@ const TEMPLATE_PATH = path.join(__dirname, 'template')
 const templatePkgJson = require(path.join(TEMPLATE_PATH, 'package.json'))
 const COMMANDS = {
   async generate (args) {
-    const [ packagesAmount ] = args
+    const [ pkgsAmount ] = args
     let i = 1
 
     await Promise.all([
@@ -13,14 +13,14 @@ const COMMANDS = {
       fse.remove(path.join(TEMPLATE_PATH, 'yarn.lock')),
     ])
 
-    while (i <= packagesAmount) {
-      await generateRepo(i++)
+    while (i <= pkgsAmount) {
+      await generatePackage(i++)
     }
   }
 }
 
-async function generateRepo (number) {
-  const otherPackages = await fse.readdir('.')
+async function generatePackage (number) {
+  const otherPkgs = await fse.readdir('.')
   const pkgName = `package-${number}`
   const pkgJson = {
     ...templatePkgJson,
@@ -28,7 +28,7 @@ async function generateRepo (number) {
   }
 
   await fse.copy(TEMPLATE_PATH, pkgName)
-  for (const otherPkgName of otherPackages) {
+  for (const otherPkgName of otherPkgs) {
     if (Math.random() < 0.5) {
       pkgJson.dependencies = pkgJson.dependencies || {}
       pkgJson.dependencies[otherPkgName] = '^' + templatePkgJson.version
