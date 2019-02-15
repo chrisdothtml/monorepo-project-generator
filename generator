@@ -1,5 +1,14 @@
 #!/usr/bin/env node
 
-// replaces Math.random with seeded rng for reproducable package generation
-require('seedrandom')('monorepo', { global: true })
-require('./index.js')(process.argv.slice(2)).catch(console.error)
+let argv = process.argv.slice(2)
+let seed = 'monorepo ftw'
+const seedArgIndex = argv.findIndex(arg => /--seed=.+/.test(arg))
+
+if (seedArgIndex > -1) {
+  seed = argv[seedArgIndex].split('=').slice(1).join('=')
+  argv.splice(seedArgIndex, 1)
+}
+
+// replaces Math.random with seeded rng
+require('seedrandom')(seed, { global: true })
+require('./index.js')(argv).catch(console.error)
