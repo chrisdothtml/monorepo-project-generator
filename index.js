@@ -6,7 +6,8 @@ const templatePkgJson = require(path.join(TEMPLATE_PATH, 'package.json'))
 const COMMANDS = {
   async addDeps (args) {
     const npm = require('libnpm')
-    const pkgNames = fse.readdir('.')
+    const pkgNames = (await fse.readdir('.'))
+      .filter(filename => !/^\./.test(filename))
     const depNames = require('./popular-deps.json')
     const depPool = {}
     const depVersions = await Promise.all(
@@ -55,7 +56,8 @@ async function addPackageDeps (pkgName, depPool) {
 }
 
 async function generatePackage (number) {
-  const otherPkgs = await fse.readdir('.')
+  const otherPkgs = (await fse.readdir('.'))
+    .filter(filename => !/^\./.test(filename))
   const pkgName = `package-${number}`
   const pkgJson = {
     ...templatePkgJson,
