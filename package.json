@@ -1,5 +1,9 @@
 {
   "private": true,
+  "engines": {
+    "node": ">=11",
+    "yarn": ">=1.12"
+  },
   "dependencies": {
     "fs-extra": "^7.0.1",
     "libnpm": "^2.0.1",
