@@ -23,7 +23,7 @@ cd ../path/to/my-test-monorepo
 ***Note***: this uses a seeded rng, so all random operations in commands are reproducable if the same command is run again (e.g. randomly making deps dependent on eachother, randomly adding deps to packages)
 
 ```sh
-../path/to/this/repo/generator <command> [args...]
+../path/to/monorepo-project-generator/generator <command> [args...]
 
 # provide a custom seed for the rng
 generator <command> --seed=my-seed [args...]
