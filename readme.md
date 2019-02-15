@@ -31,4 +31,8 @@ generator <command> --seed=my-seed [args...]
 # generate [n] number of packages that are randomly dependent
 # on eachother
 generator generate 100
+
+# randomly add new dependencies to the existing generated
+# packages (make sure to run in the dir containing the packages)
+generator addDeps
 ```

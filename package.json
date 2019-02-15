@@ -2,6 +2,7 @@
   "private": true,
   "dependencies": {
     "fs-extra": "^7.0.1",
+    "libnpm": "^2.0.1",
     "seedrandom": "^2.4.4"
   }
 }
